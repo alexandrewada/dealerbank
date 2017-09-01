@@ -1,0 +1,11 @@
+#resumo_produto tbody tr td {
+	text-align: center;
+}
+
+#resumo_produto thead tr td {
+	text-align: center;
+}
+
+#resumo_produto tfoot tr td {
+	text-align: center;
+}

@@ -1,0 +1,11 @@
+#resumo_peca tbody tr td {
+	text-align: center;
+}
+
+#resumo_peca thead tr td {
+	text-align: center;
+}
+
+#resumo_peca tfoot tr td {
+	text-align: center;
+}
