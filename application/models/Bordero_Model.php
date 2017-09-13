@@ -195,7 +195,7 @@ class Bordero_Model extends CI_Model {
 
 				if($this->input->post('tipo_'.$i) == 1){
 					$this->form_validation->set_rules('data_nf_'.$i,'Data NF #'.$i,'required|exact_length[10]');
-					$this->form_validation->set_rules('nf_'.$i,'N° NF #'.$i,'required|numeric');
+					$this->form_validation->set_rules('nf_'.$i,'N° NF #'.$i,'required');
 				} else {
 					$this->form_validation->set_rules('banco_'.$i,'Banco #'.$i,'required|numeric');
 					$this->form_validation->set_rules('agencia_'.$i,'Agência #'.$i,'required|numeric');
@@ -204,7 +204,7 @@ class Bordero_Model extends CI_Model {
 
 				$this->form_validation->set_rules('vencimento_'.$i,'Vencimento #'.$i,'required|exact_length[10]');
 				$this->form_validation->set_rules('valor_'.$i,'Valor #'.$i,'required|numeric');
-				$this->form_validation->set_rules('doc_'.$i,'N° Doc #'.$i,'required|numeric');
+				$this->form_validation->set_rules('doc_'.$i,'N° Doc #'.$i,'required');
 				$this->form_validation->set_rules('sacado_cnpj_cpf_'.$i,'Sacado #'.$i,'required');
 				$this->form_validation->set_rules('tipo_'.$i,'Tipo #'.$i,'required|integer');
 

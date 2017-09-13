@@ -103,6 +103,14 @@
                     </li>            
                     <?endif;?>
 
+                    <?if(in_array($perfil,array(1,8)) == true):?>
+                    <li><a><i class="fa fa-newspaper-o"></i> Títulos <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="<?=base_url('titulo/gerenciar');?>">Pesquisar</a></li>
+                      </ul>
+                    </li>            
+                    <?endif;?>
+
 
                
                    

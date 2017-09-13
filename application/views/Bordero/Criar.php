@@ -79,7 +79,7 @@ table tbody tr td {
 	$("#titulo_"+$id_titulos+" .vencimento").blur(function(){
 		var data_vencimento = $(this).text(); 
     var data_operacao   = $("input[name='data_operacao']").val();
-		$.get("//www.ingles200h.com/dealerfactoring/webservice/Prazo/"+data_vencimento+"/"+data_operacao,function(e){
+		$.get(base_url+'webservice/Prazo/'+data_vencimento+'/'+data_operacao,function(e){
 			$("#titulo_"+$id_titulos+" .prazo").text(e.prazo);
 		});
 	});
@@ -87,7 +87,7 @@ table tbody tr td {
   
 	$("#titulo_"+$id_titulos+" input[name='sacado']").blur(function(){
 		var cnpj = $(this).val();
-		$.get("//www.ingles200h.com/dealerfactoring/webservice/cnpjusuario/"+cnpj,function(e){
+		$.get(base_url+'webservice/cnpjusuario/'+cnpj,function(e){
 			if(e.error == false){
 				$("#titulo_"+$id_titulos+" .nome_sacado").text(e.dados.pj_razao_social);
 			} else {
