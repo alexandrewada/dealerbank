@@ -15,6 +15,14 @@ $(function(){
         $.contextMenu({
             selector: '.context-menu-one', 
             callback: function(key, options) {
+
+            	var itemSelecionado = $("input[name='id_titulo[]']:checked").length;
+
+            	if(itemSelecionado <= 0){
+            		alert('Você precisa selecionar pelo menos um título');
+            		return false;
+            	}
+
            		switch(key) {
            			case 'gerar_remessa':
            				$("input[name='acao']").val('gerar_remessa');
@@ -23,8 +31,7 @@ $(function(){
            		}
             },
             items: {
-            	"gerar_remessa": {name: "Gerar Arquivo de Remessa"},
-            	"editar_titulo": {name: "Editar Título"}
+            	"gerar_remessa": {name: "Gerar Arquivo de Remessa"}
             }
         });
 
