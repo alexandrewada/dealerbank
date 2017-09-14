@@ -8,6 +8,43 @@ class Titulo extends CI_Controller {
 		$this->template->load('template','Titulo/Gerenciar',$view);
 	}
 
+	public function Acoes() {
+		switch ($this->input->post('acao')) {
+			case 'gerar_remessa':
+				$this->load->model('Titulo_Model');
+				$titulos 	= 	$this->Titulo_Model->getTitulosByIDVirgula($this->input->post('id_titulo'));
+				$this->load->library('Boleto');
+
+
+				foreach ($titulos as $key => $v) {
+					$boletoExamplo = array(
+							'nosso_numero' 		=> 31312312,
+							'nosso_documento'	=> 31231231,
+							'valor'				=> $v->valor,
+							'data_vencimento'   => $v->data_vencimento,
+							'descricao_boleto'	=> 'hello',
+							'sacado_nome'		=> ($v->tipo_pessoa == 1) ? $v->nome : $v->razao_social,
+							'sacado_tipo'		=> ($v->tipo_pessoa == 1) ? 'CPF' : 'CNPJ',
+							'sacado_cpf'		=> ($v->tipo_pessoa == 1) ? $v->cpf : $v->cnpj,
+							'sacado_logradouro' => $v->endereco_rua,
+							'sacado_bairro'		=> $v->endereco_bairro,
+							'sacado_cep'		=> $v->endereco_cep,
+							'sacado_uf'			=> $v->endereco_uf,
+							'sacado_cidade'		=> $v->endereco_cidade
+					 );
+
+					$this->boleto->AdicionarBoleto($boletoExamplo);
+				}
+
+				redirect($this->boleto->salvarArquivo());
+					
+
+			break;
+			
+			
+		}
+	}
+
 	public function Criar($id_cliente) {
 		
 		if($this->input->post()){

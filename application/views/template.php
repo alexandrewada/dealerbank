@@ -23,6 +23,8 @@
 
     <!-- Toast -->
     <script src="<?=base_url('public/js/template/toast.js');?>"></script>
+    <script src="<?=base_url('public/js/template/context-menu/jquery.contextMenu.js');?>"></script>
+    <script src="<?=base_url('public/js/template/context-menu/jquery.ui.position.js');?>"></script>
 
 
     <!-- Bootstrap -->

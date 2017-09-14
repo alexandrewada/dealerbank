@@ -86,10 +86,13 @@
 		public function salvarArquivo($nome) {
 			
 			if(empty($nome)) {
-				$nome = date('Y-m-d-h-i-s').'.txt';
+				$nome = date('Y_m_d_h-i-s').'.txt';
 			}
 
-			$this->arquivo->save($nome);
+			$dir = 'public/remessas/'.$nome;
+			$this->arquivo->save($dir);
+
+			return base_url($dir);
 		}
 
 

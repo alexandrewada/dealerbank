@@ -1,19 +1,43 @@
+    <link href="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+
 <script type="text/javascript">
 $(function(){
+
+
     $('#tabela tr').click(function(event) {
         if (event.target.type !== 'checkbox') {
             $(':checkbox', this).trigger('click');
         }
     });
+
+
+
+        $.contextMenu({
+            selector: '.context-menu-one', 
+            callback: function(key, options) {
+           		switch(key) {
+           			case 'gerar_remessa':
+           				$("input[name='acao']").val('gerar_remessa');
+           				$("#form_titulo").submit();
+           			break;
+           		}
+            },
+            items: {
+            	"gerar_remessa": {name: "Gerar Arquivo de Remessa"},
+            	"editar_titulo": {name: "Editar Título"}
+            }
+        });
+
+
+
 });
 </script>
 
 
 
-<div class="col-md-12 col-sm-12 col-xs-12">
-	
+<div class="col-md-12 col-sm-12 col-xs-12 context-menu-one">
 
-	<form action="<?=base_url('titulo/gerenciar');?>" method='POST'>
+	<form  action="<?=base_url('titulo/gerenciar');?>" method='POST'>
 
 	<div id='filtros' class="x_panel">
 		<div class="x_title">
@@ -41,8 +65,9 @@ $(function(){
 
 	<?if($listar):?>
 
-		<form action="<?=base_url('titulo/acao');?>" method='POST'>
-
+		<form id='form_titulo' action="<?=base_url('titulo/acoes');?>" method='POST'>
+			<input type="hidden" name="acao" value="">
+			
 			<div class="x_panel">
 				<div class="x_title">
 					<h2>Lista de Titulos</h2>
