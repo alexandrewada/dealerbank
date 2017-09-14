@@ -1,7 +1,6 @@
 
 <form class="ajax-post" action="<?=base_url('clientes/editar');?>">
 
-
 <div class='row'>
 	<div class='col-md-4'>
 		<div class='form-group'>

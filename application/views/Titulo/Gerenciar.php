@@ -85,21 +85,25 @@ $(function(){
 						<thead>
 							<tr>
 								<th></th>
+								<th>ID</th>
 								<th>Sacado</th>
 								<th>Vencimento</th>
-								<th>Doc</th>
 								<th>Valor</th>
+								<th>Doc</th>
+							
 							</tr>
 						</thead>
 						<tbody>
 							<?foreach ($listar as $key => $v):?>
 							<label>
-							<tr>
+							<tr style="cursor: pointer;">
 								<td><input type="checkbox" name="id_titulo[]" value="<?=$v->id_titulo;?>"></td>
+								<td><?=$v->id_titulo;?></td>
 								<td><?=$v->nome;?></td>
 								<td><?=date('d/m/Y',strtotime($v->data_vencimento));?></td>
-								<td><?=$v->numero;?></td>
 								<td><?=$v->valor;?></td>
+								<td><?=$v->numero;?></td>
+						
 							</tr>
 							<?endforeach;?>
 						</tbody>

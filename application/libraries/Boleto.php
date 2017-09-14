@@ -12,7 +12,7 @@
 			$this->arquivo->configure(array(
 			    'data_geracao'  => new DateTime('2017-10-10'),
 			    'data_gravacao' => new DateTime('2017-10-10'), 
-			    'nome_fantasia' => 'DEALER BANK', // seu nome de empresa
+			    'nome_fantasia' => 'DEALER BANK FOMENTO M. LTDA', // seu nome de empresa
 			    'razao_social'  => 'DEALER BANK FOMENTO MERCANTIL LTDA ME',  // sua razão social
 			    'cnpj'          => '01.810.786/0001-75', // seu cnpj completo
 			    'banco'         =>  $this->codigo_banco, //código do banco

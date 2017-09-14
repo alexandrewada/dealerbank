@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 // $config['base_url'] = 'http://sistema.appleplanet.com.br/';
-$config['base_url'] = 'http://localhost/dealerfactoring';
+$config['base_url'] = 'http://localhost/dealerbank';
 
 /*
 |--------------------------------------------------------------------------

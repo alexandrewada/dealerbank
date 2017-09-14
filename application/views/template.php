@@ -43,7 +43,7 @@
     <link href="<?=base_url('public/css/template/template.css?v=203');?>" rel="stylesheet">
   </head>
 
-  <body class="nav-md">
+  <body class="nav-sm">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">
@@ -106,7 +106,7 @@
                     <?endif;?>
 
                     <?if(in_array($perfil,array(1,8)) == true):?>
-                    <li><a><i class="fa fa-newspaper-o"></i> Títulos <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-folder-open"></i> Títulos <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="<?=base_url('titulo/gerenciar');?>">Pesquisar</a></li>
                       </ul>
