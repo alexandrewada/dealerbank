@@ -2,6 +2,25 @@
 
 class Titulo extends CI_Controller {
 
+
+	public function Remessa() {
+		$this->template->load('template','Titulo/Remessa');
+	}
+
+	public function Processarremessa() {
+		$this->load->library('Boleto');
+		$dados = $this->boleto->lerRetorno('C:\wamp64\www\dealerbank\retorno.ret');
+		foreach($dados as $detalhe) {
+		    if($detalhe->getValorRecebido() > 0) {
+		        $nossoNumero   = $detalhe->getNossoNumero();
+		        $valorRecebido = $detalhe->getValorRecebido();
+		        $dataPagamento = $detalhe->getDataOcorrencia();
+		        $carteira      = $detalhe->getCarteira();
+		       	echo $valorRecebido.'<br>';
+		    }
+		}
+	}
+
 	public function Gerenciar() {
 		$this->load->model('Titulo_Model');
 		$view['listar'] = $this->Titulo_Model->getByFiltro();

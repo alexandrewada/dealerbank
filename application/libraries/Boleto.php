@@ -29,6 +29,23 @@
 		}
 
 
+		public function lerRetorno($caminho) {
+			$cnabFactory = new Cnab\Factory();
+			$arquivo     = $cnabFactory->createRetorno($caminho);
+			$detalhes    = $arquivo->listDetalhes();
+			return $detalhes;
+			// foreach($detalhes as $detalhe) {
+			//     if($detalhe->getValorRecebido() > 0) {
+			//         $nossoNumero   = $detalhe->getNossoNumero();
+			//         $valorRecebido = $detalhe->getValorRecebido();
+			//         $dataPagamento = $detalhe->getDataOcorrencia();
+			//         $carteira      = $detalhe->getCarteira();
+			//         // você já tem as informações, pode dar baixa no boleto aqui
+			//     }
+			// }
+		}
+
+
 		public function AdicionarBoleto($p) {
 
 			// $boletoExamplo = array(
