@@ -109,7 +109,7 @@
                     <li><a><i class="fa fa-folder-open"></i> Títulos <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="<?=base_url('titulo/gerenciar');?>">Pesquisar</a></li>
-                        <li><a href="<?=base_url('titulo/remessa');?>">Remessa</a></li>
+                        <li><a href="<?=base_url('titulo/retorno');?>">Processar retorno</a></li>
                       </ul>
                     </li>            
                     <?endif;?>

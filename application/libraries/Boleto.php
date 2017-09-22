@@ -103,7 +103,7 @@
 		public function salvarArquivo($nome) {
 			
 			if(empty($nome)) {
-				$nome = date('Y_m_d_h-i-s').'.txt';
+				$nome = 'REMESSA-'.date('Y_m_d_h-i-s').'.txt';
 			}
 
 			$dir = 'public/remessas/'.$nome;

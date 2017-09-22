@@ -3,22 +3,62 @@
 class Titulo extends CI_Controller {
 
 
-	public function Remessa() {
-		$this->template->load('template','Titulo/Remessa');
+	public function Retorno() {
+		$this->template->load('template','Titulo/Retorno');
 	}
+	
+	public function ProcessarRetorno() {
 
-	public function Processarremessa() {
-		$this->load->library('Boleto');
-		$dados = $this->boleto->lerRetorno('C:\wamp64\www\dealerbank\retorno.ret');
-		foreach($dados as $detalhe) {
-		    if($detalhe->getValorRecebido() > 0) {
-		        $nossoNumero   = $detalhe->getNossoNumero();
-		        $valorRecebido = $detalhe->getValorRecebido();
-		        $dataPagamento = $detalhe->getDataOcorrencia();
-		        $carteira      = $detalhe->getCarteira();
-		       	echo $valorRecebido.'<br>';
-		    }
-		}
+			$config['upload_path']          = './public/retorno';
+            $config['allowed_types']        = '*';
+            $config['file_name']			= 'RETORNO-'.date('Y_m_d_h-i-s').'.txt';
+            // $config['max_size']             = 100000;
+          
+
+            $this->load->library('upload', $config);
+
+            if(!$this->upload->do_upload('arquivo')){
+               $this->template->load('template','Titulo/Retorno',array('error' => $this->upload->display_errors()));
+            } else {
+                $arquivo = $this->upload->data();
+		        $this->load->library('Boleto');
+				try {
+					$dados = $this->boleto->lerRetorno($arquivo['full_path']);			
+				} catch (Exception $e) {
+			         $this->template->load('template','Titulo/Retorno',array('error' => 'Erro não foi possível processar este retorno'));			
+				}
+				
+				if($dados){
+					foreach($dados as $detalhe) {
+					    if($detalhe->getValorRecebido() > 0) {
+					        $nossoNumero   = $detalhe->getNossoNumero();
+					        $valorRecebido = $detalhe->getValorRecebido();
+					        $dataPagamento = $detalhe->getDataOcorrencia();
+					        $carteira      = $detalhe->getCarteira();
+					        $nomeCodigo    = $detalhe->getCodigoNome();
+
+
+					        $data = array(
+					        				'nossoNumero' 			=> $nossoNumero,
+					        				'valor'		  			=> $valorRecebido,
+					        				'carteira'    			=> $carteira,
+					        				'data'		  			=> date('Y-m-d H:i:s'),
+					        				'data_pagamento'		=> $dataPagamento->format('Y-m-d H:i:s'),
+					        				'retorno'				=> $nomeCodigo,
+					        				'descricao_liquidacao'	=> $detalhe->getDescricaoLiquidacao(),
+					        				'numeroDocumento'		=> $detalhe->getNumeroDocumento()
+					        			 );
+
+					        $this->db->insert('tb_retorno_historico',$data);
+
+					    }
+					}
+		            $this->template->load('template','Titulo/Retorno',array('msg' => 'Retorno registrado com sucesso.'));
+				} else {
+					$this->template->load('template','Titulo/Retorno',array('msg' => 'Nenhum registro encontrado processado.'));
+				}
+            }
+
 	}
 
 	public function Gerenciar() {
