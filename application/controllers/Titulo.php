@@ -76,9 +76,9 @@ class Titulo extends CI_Controller {
 
 
 				foreach ($titulos as $key => $v) {
-					$boletoExamplo = array(
-							'nosso_numero' 		=> 31312312,
-							'nosso_documento'	=> 31231231,
+					$boletoExemplo = array(
+							'nosso_numero' 		=> str_pad($v->id_titulo, 8, "0", STR_PAD_LEFT),
+							'nosso_documento'	=> $v->numero_nf,
 							'valor'				=> $v->valor,
 							'data_vencimento'   => $v->data_vencimento,
 							'descricao_boleto'	=> 'hello',
@@ -92,7 +92,8 @@ class Titulo extends CI_Controller {
 							'sacado_cidade'		=> $v->endereco_cidade
 					 );
 
-					$this->boleto->AdicionarBoleto($boletoExamplo);
+
+					$this->boleto->AdicionarBoleto($boletoExemplo);
 				}
 
 				$file_url = $this->boleto->salvarArquivo();
